@@ -1,6 +1,7 @@
 package org.example;
 
-import java.util.Scanner;
+
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,6 +14,7 @@ public class Main {
         int timeMinutes = 0;
         boolean hasSurcharge;
         String fareType = "";
+
 
         FareCalculator calculator;
 
@@ -60,16 +62,18 @@ public class Main {
                     hasSurcharge = fareType.equalsIgnoreCase("night");
                     bookRide.setHasSurcharge(hasSurcharge);
 
-                    System.out.print("Base fare: ");
-                    System.out.print("Distance cost: ");
-                    System.out.println("Surcharge: ".concat("(").concat(fareType).concat(") : "));
-
                     calculator = FareCalculatorFactory.createCalculator(bookRide.getVehicleType());
-                    double totalFare = calculator.calculateFare(bookRide.getDistance(), bookRide.getTimeMinutes(), bookRide.isHasSurcharge());
+                    double totalFare = calculator.calculateFare(bookRide.getDistance(),bookRide.getTimeMinutes(),bookRide.isHasSurcharge());
+
+                    FareBreakdown breakdown = (FareBreakdown) calculator;
+
+                    System.out.printf("Base fare: %.2f\n", breakdown.getBaseFare());
+                    System.out.printf("Distance cost: %.2f\n", breakdown.getDistanceCost());
+                    System.out.printf("Duration cost: %.2f\n", breakdown.getDurationCost());
+                    System.out.printf("Surcharge: %.2f\n", breakdown.getSurcharge());
 
                     System.out.println("Total Fare: ".concat(Double.toString(totalFare)));
-                }
-
+                  }
             } else if (choice == 3) {
                 //displayFunction
                 if(fareType.equalsIgnoreCase("")){ //Error Checker
