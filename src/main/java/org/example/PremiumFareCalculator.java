@@ -6,7 +6,7 @@ public class PremiumFareCalculator implements FareCalculator {
         double baseFare = 60;
         double fare = baseFare + distance * 12.5 + time * 3;
         if (hasSurcharge){
-            fare += (fare * 1.35);
+            fare = (fare * 1.35);
         }
         return fare;
     }
