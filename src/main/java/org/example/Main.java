@@ -1,7 +1,6 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -14,9 +13,9 @@ public class Main {
         String vehicleType = "Standard";
         double distance = 0.0;
         int timeMinutes = 0;
-        boolean hasSurcharge = false;
+        boolean hasSurcharge;
 
-        FareCalculator calculator = null;
+        FareCalculator calculator;
 
         Ride bookRide = new Ride(vehicleType, distance, timeMinutes);
 
@@ -46,15 +45,18 @@ public class Main {
                 System.out.print("Fare Type (normal/night): ");
                 String fareType = scanner.next();
 
-                hasSurcharge = (fareType.equalsIgnoreCase("night")) ? true: false;
+                hasSurcharge = fareType.equalsIgnoreCase("night");
                 bookRide.setHasSurcharge(hasSurcharge);
-
-                System.out.print("Base fare: ");
-                System.out.print("Distance cost: ");
-                System.out.println("Surcharge: ".concat("(").concat(fareType).concat(") : "));
 
                 calculator = FareCalculatorFactory.createCalculator(bookRide.getVehicleType());
                 double totalFare = calculator.calculateFare(bookRide.getDistance(),bookRide.getTimeMinutes(),bookRide.isHasSurcharge());
+
+                FareBreakdown breakdown = (FareBreakdown) calculator;
+
+                System.out.printf("Base fare: %.2f\n", breakdown.getBaseFare());
+                System.out.printf("Distance cost: %.2f\n", breakdown.getDistanceCost());
+                System.out.printf("Duration cost: %.2f\n", breakdown.getDurationCost());
+                System.out.printf("Surcharge: %.2f\n", breakdown.getSurcharge());
 
                 System.out.println("Total Fare: ".concat(Double.toString(totalFare)));
 
