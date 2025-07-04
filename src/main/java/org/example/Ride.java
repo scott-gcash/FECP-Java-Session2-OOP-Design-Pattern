@@ -13,13 +13,6 @@ public class Ride {
         this.timeMinutes = timeMinutes;
     }
 
-    public Ride(String vehicleType, double distance, int timeMinutes, boolean hasSurcharge) {
-        this.vehicleType = vehicleType;
-        this.distance = distance;
-        this.timeMinutes = timeMinutes;
-        this.hasSurcharge = hasSurcharge;
-    }
-
     public String getVehicleType() {return vehicleType;}
 
     public void setVehicleType(String vehicleType) {this.vehicleType = vehicleType;}
