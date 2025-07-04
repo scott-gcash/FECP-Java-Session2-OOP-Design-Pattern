@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class StandardFareCalculatorTest {
 
     private final StandardFareCalculator calculator = new StandardFareCalculator();
-
+    //Standard
     @Test
     public void shouldReturnCorrectFareForStandardDayBookingWithoutSurcharge() {
         // Base fare = 45, distance = 5km (5 * 10 = 50), time = 10min (10 * 2 = 20)

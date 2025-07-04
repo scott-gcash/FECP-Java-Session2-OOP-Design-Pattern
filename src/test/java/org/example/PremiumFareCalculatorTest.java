@@ -49,7 +49,7 @@ public class PremiumFareCalculatorTest {
         double expectedFare = 175.0;
         assertEquals(expectedFare, calculator.calculateFare(distance, time, hasSurcharge), 0.001);
     }
-
+    //Premium
     @Test
     public void shouldReturnCorrectFareWithSurchargeForPremiumNightBooking() {
         // Base fare = 60, distance = 5km (5 * 12.5 = 62.5), time = 10min (10 * 3 = 30)

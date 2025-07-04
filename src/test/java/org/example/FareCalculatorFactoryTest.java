@@ -15,6 +15,7 @@ public class FareCalculatorFactoryTest {
         assertTrue(calculator instanceof StandardFareCalculator);
         assertFalse(calculator instanceof PremiumFareCalculator);
     }
+    // Standard Fare
 
     @Test
     public void shouldReturnPremiumFareCalculatorForPremiumVehicleType() {
