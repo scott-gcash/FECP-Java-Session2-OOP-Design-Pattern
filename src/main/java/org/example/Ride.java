@@ -36,5 +36,7 @@ public class Ride {
 
     public void setFare(double fare) {this.fare = fare;}
 
+    public boolean isHasSurcharge() {return hasSurcharge;}
 
+    public void setHasSurcharge(boolean hasSurcharge) {this.hasSurcharge = hasSurcharge;}
 }

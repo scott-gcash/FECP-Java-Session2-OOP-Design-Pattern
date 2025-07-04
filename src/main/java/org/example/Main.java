@@ -14,6 +14,10 @@ public class Main {
         String vehicleType = "Standard";
         double distance = 0.0;
         int timeMinutes = 0;
+        boolean hasSurcharge = false;
+
+        FareCalculator calculator = null;
+
         Ride bookRide = new Ride(vehicleType, distance, timeMinutes);
 
         System.out.println("=== Ride Booking System ===");
@@ -37,20 +41,38 @@ public class Main {
                 bookRide = new Ride(vehicleType, distance, timeMinutes);
             } else if (choice == 2) {
                 //calculateFareFunction
+                //System.out.print("Fare Type (normal/night): ");
+
                 System.out.print("Fare Type (normal/night): ");
                 String fareType = scanner.next();
-                if (fareType.equalsIgnoreCase("normal")){
-                    //StandardCalculate
+
+                hasSurcharge = (fareType.equalsIgnoreCase("night")) ? true: false;
+                bookRide.setHasSurcharge(hasSurcharge);
+
+                System.out.print("Base fare: ");
+                System.out.print("Distance cost: ");
+                System.out.println("Surcharge: ".concat("(").concat(fareType).concat(") : "));
+
+                calculator = FareCalculatorFactory.createCalculator(bookRide.getVehicleType());
+                double totalFare = calculator.calculateFare(bookRide.getDistance(),bookRide.getTimeMinutes(),bookRide.isHasSurcharge());
+
+                System.out.println("Total Fare: ".concat(Double.toString(totalFare)));
+
+                /*if (fareType.equalsIgnoreCase("normal")){
+                    //StandardFareCalculator
                 } else if (fareType.equalsIgnoreCase("night")){
                     //SurchargeCalculate
-                }
+                }*/
             } else if (choice == 3) {
                 //displayFunction
                 System.out.println("--- Receipt ---");
                 System.out.println("Ride Type: ".concat(bookRide.getVehicleType()));
                 System.out.println("Distance: ".concat(Double.toString(bookRide.getDistance())).concat(" km"));
                 System.out.println("Duration: ".concat(Integer.toString(bookRide.getTimeMinutes())).concat(" mins"));
-                //System.out.println("Total Fare: ".concat(Double.toString(fare)));
+                calculator = FareCalculatorFactory.createCalculator(bookRide.getVehicleType());
+                double totalFare = calculator.calculateFare(bookRide.getDistance(),bookRide.getTimeMinutes(),bookRide.isHasSurcharge());
+
+                System.out.println("Total Fare: ".concat(Double.toString(totalFare)));
             } else if (choice == 4) {
                 System.out.println("Thank you for using our service!");
                 break;
