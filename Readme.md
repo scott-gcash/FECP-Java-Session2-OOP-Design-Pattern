@@ -15,6 +15,10 @@ Screenshots of Project Structure:
 
 ![img_5.png](img_5.png)
 
+UML Diagram
+
+![img_6.png](img_6.png)
+
 Screenshots of Output:
 
 ![img.png](img.png)
