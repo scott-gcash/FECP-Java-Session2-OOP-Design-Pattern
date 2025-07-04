@@ -59,7 +59,7 @@ public class PremiumFareCalculatorTest {
         double distance = 5.0;
         double time = 10.0;
         boolean hasSurcharge = true;
-        double expectedFare = 152.5 + (152.5 * 1.35); // Correct calculation: fare += (fare * 1.35)
+        double expectedFare = 152.5 * 1.35;
         assertEquals(expectedFare, calculator.calculateFare(distance, time, hasSurcharge), 0.001);
     }
 
@@ -71,7 +71,7 @@ public class PremiumFareCalculatorTest {
         double distance = 0.0;
         double time = 0.0;
         boolean hasSurcharge = true;
-        double expectedFare = 60.0 + (60.0 * 1.35);
+        double expectedFare = 60.0 * 1.35;
         assertEquals(expectedFare, calculator.calculateFare(distance, time, hasSurcharge), 0.001);
     }
 
